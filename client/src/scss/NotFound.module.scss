@@ -1,0 +1,11 @@
+@use "./variables.scss" as *;
+
+.Container {
+   flex: 1;
+   padding: 22px 20px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 0.9rem;
+   font-size: $fs-425;
+}

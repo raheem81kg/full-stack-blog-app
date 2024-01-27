@@ -1,0 +1,49 @@
+@use "./variables.scss" as *;
+
+.Container {
+   padding: 55px 60px;
+   flex-grow: 1;
+   background-color: $bg-bg;
+
+   @media screen and (max-width: 980px) {
+      padding: 1rem 1.6rem;
+   }
+
+   &__title {
+      margin-top: 26px !important;
+      font-size: 3.275rem;
+      margin: 5px 0;
+      font-weight: $fw-semi-semi-bold;
+   }
+
+   &__feed {
+      display: flex;
+      gap: 35px;
+      overflow-x: scroll;
+      white-space: nowrap;
+
+      @media screen and (max-width: 980px) {
+         flex-direction: column;
+         overflow: auto;
+      }
+
+      > * {
+         border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar {
+         height: 0.25rem;
+      }
+
+      &::-webkit-scrollbar-track {
+         background: $text-secondary; /* Thumb color on hover */
+      }
+
+      &::-webkit-scrollbar-thumb {
+         background: $clr-accent;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+         background: #555; /* Thumb color on hover */
+      }
+   }
+}

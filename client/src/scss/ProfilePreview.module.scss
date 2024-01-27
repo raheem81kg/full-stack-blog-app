@@ -1,0 +1,98 @@
+@use "./variables.scss" as *;
+
+.Container {
+   padding: 0;
+   position: relative;
+   * {
+      background-color: $text-secondary;
+   }
+   &__img_container {
+      position: relative;
+      img {
+         width: 100%; /* Make the image fill the container horizontally */
+         height: 100%;
+         object-fit: cover; /* Scale the image while preserving its aspect ratio */
+      }
+      &__cover {
+         width: 100%; /* Set the width of your image containers */
+         height: 56px; /* Set the height of your image containers */
+         overflow: hidden; /* Hides any overflowing content */
+         &__profilePage {
+            height: 196px;
+         }
+      }
+
+      &__profile_pic {
+         position: absolute;
+         width: 72px; /* Set the width of your image containers */
+         height: 72px; /* Set the height of your image containers */
+         overflow: hidden; /* Hides any overflowing content */
+         border-radius: 50%;
+         top: 50%; /* Position from top */
+         left: 50%; /* Position from left */
+         transform: translate(-50%, -50%); /* Center the profile picture */
+         border: 2px solid $text-secondary;
+      }
+
+      &__profile_pic_profile {
+         position: absolute;
+         width: 160px; /* Set the width of your image containers */
+         height: 160px; /* Set the height of your image containers */
+         overflow: hidden; /* Hides any overflowing content */
+         border-radius: 50%;
+         bottom: 0%; /* Position from top */
+         left: 1.5%; /* Position from left */
+         border: 2px solid $text-secondary;
+      }
+
+      &__white_bg {
+         height: 56px;
+         width: 100%;
+         background-color: $text-secondary;
+      }
+   }
+
+   &__user_details {
+      padding: 1.2rem 1.2rem 1.6rem;
+      text-align: center;
+      margin-bottom: 1px;
+      h2 {
+         font-size: $fs-400;
+         position: relative;
+         display: inline-block;
+         cursor: pointer;
+         &:hover {
+            &:after {
+               content: "";
+               position: absolute;
+               left: 0;
+               bottom: 3px; /* Adjust the thickness of the underline */
+               width: 100%;
+               height: 1px; /* Adjust the thickness of the underline */
+               background-color: $clr-accent-3; /* Change to your preferred underline color */
+            }
+         }
+      }
+      p {
+         font-size: 0.75rem;
+         color: rgba(0, 0, 0, 0.6);
+      }
+   }
+   &__settings {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.2rem;
+      font-size: $fs-300;
+      font-weight: $fw-semi-bold;
+   }
+
+   &__follow {
+      position: absolute;
+      bottom: 5%;
+      right: 2%;
+      @media screen and (max-width: 685px) {
+         bottom: 29.5%;
+      }
+   }
+}

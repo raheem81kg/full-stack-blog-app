@@ -1,0 +1,155 @@
+@use "./variables.scss" as *;
+
+.Container {
+   padding: 32px 60px;
+   flex-grow: 1;
+   display: flex;
+   height: calc(100vh - 96px);
+   background-color: $bg-bg;
+
+   &__left {
+      flex: 1;
+      & img {
+         height: 100%;
+         width: 100%;
+         object-fit: cover;
+         object-position: right;
+      }
+      @media screen and (max-width: 980px) {
+         display: none;
+      }
+   }
+
+   &__right {
+      height: 100%;
+      width: clamp(480px, 40vw, 100%);
+      padding: 0 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      @media screen and (max-width: 980px) {
+         width: max(90%, 95vw);
+         padding: 0;
+         align-items: center;
+         > * {
+            width: 100%;
+         }
+      }
+      &__welcome {
+         margin-bottom: 28px;
+         font-size: $fs-425;
+      }
+
+      & a {
+         text-decoration: none;
+         color: inherit;
+         font-size: $fs-300;
+
+         &:hover {
+            text-decoration: underline;
+         }
+      }
+
+      & h1 {
+         display: inline-block;
+         font-size: $fs-800;
+         font-weight: $fw-semi-bold;
+      }
+
+      &__form {
+         display: flex;
+         flex-direction: column;
+         &__forgot {
+            margin: 20px 0 10px 0;
+         }
+
+         &__login {
+            color: $text-secondary;
+            margin-bottom: 14px;
+            border: none;
+            background-color: $bg-primary !important;
+         }
+
+         &__register {
+            color: inherit;
+            background: none;
+            border: 1px solid $bg-primary;
+         }
+
+         &__no_account {
+            padding: 0 auto;
+            margin-top: 36px;
+            align-self: center;
+            & a {
+               font-weight: 700;
+            }
+         }
+
+         & button {
+            cursor: pointer;
+            font-size: $fs-300;
+            width: 100%;
+            padding: 12px 0;
+            border-radius: 6px;
+            transition: transform 250ms;
+            &:hover {
+               transform: translateY(-2.5px);
+            }
+         }
+
+         &__test_account {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9a1750;
+            gap: 0.9rem;
+            & button {
+               font-weight: $fw-semi-bold;
+               font-size: $fs-450;
+               color: inherit;
+               padding: 10px 0;
+               background: none;
+               outline: none;
+               border: none;
+               &:hover {
+                  cursor: pointer;
+                  text-decoration: underline;
+               }
+            }
+         }
+
+         &__or {
+            display: flex;
+            justify-content: center;
+            margin: 0.55rem 0 0.3rem 0;
+            color: $clr-accent-2;
+            font-size: $fs-350;
+         }
+      }
+
+      & input {
+         color: inherit;
+         font-size: $fs-400;
+         margin-bottom: 12px;
+         padding: 10px 0;
+         background: none;
+         outline: none;
+         border: none;
+         border-bottom: 1px solid rgba(255, 255, 255, 0.295);
+         &:focus:valid:not(:placeholder-shown) {
+            border-bottom-color: $clr-accent;
+         }
+         &::placeholder {
+            font-size: $fs-400;
+            color: inherit;
+            opacity: 1; /* Firefox */
+         }
+      }
+   }
+
+   & button,
+   input {
+      display: block;
+   }
+}
