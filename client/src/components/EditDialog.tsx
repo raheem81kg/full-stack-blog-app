@@ -35,18 +35,18 @@ export function EditDialog() {
             const profileFormData = new FormData();
             profileFormData.append("file", profilePic);
 
-            const pfpRes = await axios.post(`${import.meta.env.VITE_API_URL}/api/upload/uploadProfilePic`, profileFormData, {
+            const pfpRes = await axios.post("/api/upload/uploadProfilePic", profileFormData, {
                headers: {
                   "Content-Type": "multipart/form-data",
                },
             });
 
-            if (pfpRes.data) {
+            if (pfpRes.data.filename) {
                authContext?.setCurrentUser((prevUser) => ({
                   ...prevUser,
-                  profilePic: pfpRes.data,
+                  profilePic: pfpRes?.data?.filename,
                }));
-               return pfpRes.data;
+               return pfpRes?.data?.filename;
             }
          }
       } catch (error) {
@@ -62,16 +62,16 @@ export function EditDialog() {
             const coverFormData = new FormData();
             coverFormData.append("file", coverPic);
 
-            const coverRes = await axios.post(`${import.meta.env.VITE_API_URL}/api/upload/uploadCoverPic`, coverFormData, {
+            const coverRes = await axios.post("/api/upload/uploadCoverPic", coverFormData, {
                headers: {
                   "Content-Type": "multipart/form-data",
                },
             });
             authContext?.setCurrentUser((prevUser) => ({
                ...prevUser,
-               coverPic: coverRes.data,
+               coverPic: coverRes?.data?.filename,
             }));
-            return coverRes.data;
+            return coverRes?.data?.filename;
          }
          return null;
       } catch (error) {

@@ -122,9 +122,9 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ profilePage, user, isProfileP
                   profilePage ? style.Container__img_container__profile_pic_profile : style.Container__img_container__profile_pic
                }
             >
-               {user?.user_id ? (
+               {user?.user_id && user?.profilePic && user?.profilePic?.length > 0 ? (
                   <Link to={`/user/${user?.user_id}`}>
-                     <img src={`../upload/${user?.profilePic}`} alt="" />
+                     <img src={`../upload/${user?.profilePic}`} alt="profile picture" />
                   </Link>
                ) : (
                   <img src={fallBackPfp} alt="dummy profile picture" />

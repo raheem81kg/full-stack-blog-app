@@ -41,7 +41,10 @@ const Navbar: React.FC = () => {
                   </div>
                </div>
             </div>
-            <img className={style.Navbar__middle} id="logo" src={logoImage} alt="Some random logo" />
+            <Link to="/">
+               {" "}
+               <img className={style.Navbar__middle} id="logo" src={logoImage} alt="Some random logo" />
+            </Link>
             <div className={style.Navbar__right}>
                {authContext?.currentUser?.user_id ? (
                   <DropdownMenu>

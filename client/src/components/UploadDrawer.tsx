@@ -62,18 +62,26 @@ const UploadDrawer: React.FC<DrawerTriggerProps> = ({ children }) => {
    };
 
    const addPost = async () => {
-      if (authContext?.currentUser) return;
-      toast({
-         title: "Not logged in!",
-         description: "Please visit the register/login page",
-         action: (
-            <ToastAction altText="Go to register/login page" onClick={() => navigate("/register")}>
-               Register/Login
-            </ToastAction>
-         ),
-      });
+      if (!authContext?.currentUser) {
+         toast({
+            title: "Not logged in!",
+            description: "Please visit the register/login page",
+            action: (
+               <ToastAction altText="Go to register/login page" onClick={() => navigate("/register")}>
+                  Register/Login
+               </ToastAction>
+            ),
+         });
+         return;
+      }
 
-      if (!content) return;
+      if (!content) {
+         toast({
+            title: "No content!",
+            description: "Please enter something into the content area",
+         });
+         return;
+      }
 
       try {
          const userId = authContext?.currentUser?.user_id;

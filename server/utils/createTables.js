@@ -21,7 +21,6 @@ export async function createTables() {
       };
    } else {
       dbConfig = process.env.DB_FULL_CONNECTION_STRING;
-      console.log("string");
    }
 
    try {
