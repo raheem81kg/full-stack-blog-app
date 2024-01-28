@@ -35,8 +35,8 @@ export async function createTables() {
         username VARCHAR(255) NOT NULL UNIQUE,
         email VARCHAR(255) NOT NULL UNIQUE,
         password_hash VARCHAR(255) NOT NULL,
-        profile_picture_url VARCHAR(255),
-        cover_picture_url VARCHAR(255),
+        profile_picture_url VARCHAR(2000),
+        cover_picture_url VARCHAR(2000),
         bio TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
