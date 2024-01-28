@@ -11,6 +11,7 @@ export default defineConfig({
    },
    // host: true, will expose the project in public addresses
    preview: {
+      strictPort: true,
       host: true,
       port: 5173,
    },
