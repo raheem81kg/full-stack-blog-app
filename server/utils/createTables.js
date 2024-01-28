@@ -31,6 +31,7 @@ export async function createTables() {
       await connection.execute(`
       CREATE TABLE IF NOT EXISTS user (
         user_id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(55) NOT NULL,
         username VARCHAR(255) NOT NULL UNIQUE,
         email VARCHAR(255) NOT NULL UNIQUE,
         password_hash VARCHAR(255) NOT NULL,
