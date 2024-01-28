@@ -19,7 +19,7 @@ interface RedirectIfLoggedInProps {
 const RedirectIfLoggedIn: React.FC<RedirectIfLoggedInProps> = ({ element: Element }) => {
    const currentUser = useContext<AuthContextProps | undefined>(AuthContext)?.currentUser;
 
-   return currentUser ? <Navigate to="/" /> : <Element />;
+   return currentUser?.user_id ? <Navigate to="/" /> : <Element />;
 };
 
 const Layout = () => {

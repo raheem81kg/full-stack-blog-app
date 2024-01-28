@@ -1,4 +1,4 @@
-import { db } from "../db.js";
+import db from "../db.js";
 import Redis from "ioredis";
 import dotenv from "dotenv";
 
