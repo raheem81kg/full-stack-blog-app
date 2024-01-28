@@ -98,6 +98,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
    };
 
    const register = async (inputs: RegisterInterface): Promise<void> => {
+      console.log(import.meta.env.VITE_API_URL);
       try {
          await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, inputs, {
             withCredentials: true,
