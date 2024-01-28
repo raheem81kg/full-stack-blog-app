@@ -50,6 +50,10 @@ const Home: React.FC = () => {
    };
 
    useEffect(() => {
+      console.log(authContext?.posts);
+   }, [authContext?.posts]);
+
+   useEffect(() => {
       setFirstLoading(true);
       setOffset(0);
    }, [selectValue]);
@@ -95,13 +99,18 @@ const Home: React.FC = () => {
                      <ProfilePreview profilePage={false} user={authContext?.currentUser} />
                   </div>
                   <div className={style.Home__content__right}>
-                     {authContext?.posts
-                        ? authContext?.posts.map((post, index) => {
-                             return (
-                                <Post key={index} post={post} toggleInfo={toggleInfo} setToggleInfo={setToggleInfo} postIdex={index} />
-                             );
-                          })
-                        : "no posts available... maybe try uploading one 😉"}
+                     {authContext?.posts && authContext?.posts?.length > 0 ? (
+                        authContext?.posts.map((post, index) => {
+                           return (
+                              <Post key={index} post={post} toggleInfo={toggleInfo} setToggleInfo={setToggleInfo} postIdex={index} />
+                           );
+                        })
+                     ) : (
+                        <div className="h-full min-w-96 text-center py-14 px-9 bg-white">
+                           <p className="text-gray-600 text-lg font-semibold mb-2">No posts available right now</p>
+                           <p className="text-gray-400">Why not try uploading one? 😉</p>
+                        </div>
+                     )}
                      {isMorePosts && !firstLoading && <Button onClick={() => concatenateNextPosts()}>Load more posts</Button>}
                   </div>
                </div>
