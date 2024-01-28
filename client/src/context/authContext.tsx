@@ -70,21 +70,27 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
    const login = async (inputs: LoginInterface): Promise<void> => {
       try {
-         const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, inputs, {
+         const res = await axios.post("/api/auth/login", inputs, {
             withCredentials: true,
          });
+
+         // Check if response data is present
+         if (!res.data) {
+            throw new Error("No data received from the server");
+         }
+
          const { bio, cover_picture_url, email, name, profile_picture_url, user_id, username } = res.data;
          setCurrentUser({ bio, coverPic: cover_picture_url, email, name, profilePic: profile_picture_url, user_id, username });
       } catch (error) {
          // Handle login error
-         toastError(error, "Login error:");
+         toastError(error || "Login error: Unable to fetch user data");
       }
    };
 
    const logout = async (): Promise<void> => {
       try {
          // Perform logout request to the server
-         await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
+         await axios.post("/api/auth/logout", {
             withCredentials: true,
          });
          // Set current user to null in context
@@ -98,11 +104,16 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
    };
 
    const register = async (inputs: RegisterInterface): Promise<void> => {
-      console.log(import.meta.env.VITE_API_URL);
       try {
-         await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, inputs, {
+         const response = await axios.post("/api/auth/register", inputs, {
             withCredentials: true,
          });
+
+         // Check if the response contains data
+         if (!response.data) {
+            throw new Error("No data received from the server after registration.");
+         }
+
          // Automatically log in the user after successful registration
          await login({ usernameOrEmail: inputs.username, password: inputs.password });
       } catch (error) {
@@ -114,7 +125,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
    const updateUser = async (updatedUser: UpdateUserInterface): Promise<void> => {
       try {
          // Making the PUT request with the authorization header
-         const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/user/${currentUser?.user_id}`, updatedUser, {
+         const res = await axios.put(`/api/user/${currentUser?.user_id}`, updatedUser, {
             withCredentials: true,
          });
          const { bio, cover_picture_url, email, name, profile_picture_url, user_id, username } = res.data;

@@ -26,7 +26,7 @@ function Search({ search }: SearchProps) {
    const searchUsersByUsername = async (username: string) => {
       setLoading(true);
       try {
-         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/search?username=${username}`);
+         const response = await axios.get(`/api/user/search?username=${username}`);
          setUsersFound(response.data.users);
       } catch (error) {
          setUsersFound([]);

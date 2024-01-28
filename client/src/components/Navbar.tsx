@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
             </div>
             <img className={style.Navbar__middle} id="logo" src={logoImage} alt="Some random logo" />
             <div className={style.Navbar__right}>
-               {authContext?.currentUser != null ? (
+               {authContext?.currentUser?.user_id ? (
                   <DropdownMenu>
                      <DropdownMenuTrigger>
                         <Avatar>
@@ -59,15 +59,15 @@ const Navbar: React.FC = () => {
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                           <Link to={"/profile/" + authContext?.currentUser.user_id}>
-                              <DropdownMenuItem>
+                           <Link to={"/user/" + authContext?.currentUser.user_id}>
+                              <DropdownMenuItem className="cursor-pointer">
                                  <User className="mr-2 h-4 w-4" />
                                  <span>Profile</span>
                                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                               </DropdownMenuItem>
                            </Link>
                         </DropdownMenuGroup>
-                        <DropdownMenuItem onClick={() => authContext.logout()}>
+                        <DropdownMenuItem className="cursor-pointer" onClick={() => authContext.logout()}>
                            <LogOut className="mr-2 h-4 w-4" />
                            <span>Log out</span>
                            <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

@@ -25,10 +25,11 @@ const Home: React.FC = () => {
 
    const fetchUserProfile = async () => {
       try {
-         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/${id}`);
+         const response = await axios.get(`/api/user/${id}`);
          const userProfile = response.data;
          setUser(userProfile);
       } catch (error) {
+         console.log("first");
          navigate("/NotFound");
          toastError(error, "Fetch user profile error:");
       }
@@ -36,7 +37,7 @@ const Home: React.FC = () => {
 
    const fetchPosts = async () => {
       try {
-         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/post/getPostsByUser?targetUserId=${id}`);
+         const response = await axios.get(`/api/post/getPostsByUser?targetUserId=${id}`);
          const newPosts = response.data.posts;
          if (newPosts) authContext?.setPosts(newPosts);
       } catch (error) {

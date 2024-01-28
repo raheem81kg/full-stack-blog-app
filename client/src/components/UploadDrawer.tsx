@@ -45,7 +45,7 @@ const UploadDrawer: React.FC<DrawerTriggerProps> = ({ children }) => {
                postFormData.append("images", images[i]);
             }
 
-            const postImageRes = await axios.post(`${import.meta.env.VITE_API_URL}/api/uploadPostImages`, postFormData, {
+            const postImageRes = await axios.post("/api/uploadPostImages", postFormData, {
                headers: {
                   "Content-Type": "multipart/form-data",
                },
@@ -88,7 +88,7 @@ const UploadDrawer: React.FC<DrawerTriggerProps> = ({ children }) => {
          };
 
          // Make an Axios POST request to the addPost endpoint
-         const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/post`, post, {
+         const response = await axios.post("/api/post", post, {
             headers: {
                "Content-Type": "application/json",
             },

@@ -53,7 +53,6 @@ const postController = {
          const getUserQuery = "SELECT user_id FROM post WHERE post_id = ?";
          const [post] = await db.execute(getUserQuery, [postId]);
 
-         console.log(post);
          if (post.length === 0) {
             return res.status(404).json({ error: "Post not found" });
          }
@@ -114,7 +113,6 @@ const postController = {
          const cachedPosts = await redisClient.get(cacheKey);
 
          if (cachedPosts) {
-            console.log("cached chats");
             return res.status(200).json({ posts: JSON.parse(cachedPosts) });
          }
 
@@ -173,7 +171,6 @@ const postController = {
          const cachedPosts = await redisClient.get(cacheKey);
 
          if (cachedPosts) {
-            console.log("cached posts by user");
             return res.status(200).json({ posts: JSON.parse(cachedPosts) });
          }
 
@@ -234,7 +231,6 @@ const postController = {
          const cachedPosts = await redisClient.get(cacheKey);
 
          if (cachedPosts) {
-            console.log("cached by users chat");
             return res.status(200).json({ posts: JSON.parse(cachedPosts) });
          }
 
@@ -262,7 +258,6 @@ const postController = {
          const postsWithImagesUsersandComments = await Promise.all(
             posts.map(async (post) => {
                const user = users.find((user) => post.user_id === user.user_id);
-               // console.log(user);
                post.username = user.username;
                post.creatorname = user.name;
                post.user_pfp = user.profile_picture_url;

@@ -30,7 +30,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ profilePage, user, isProfileP
    const checkFollowing = async () => {
       if (!authContext || !authContext.currentUser || !user?.user_id) return;
       try {
-         const response = await axios.post<{ isFollowing: boolean }>(`${import.meta.env.VITE_API_URL}/api/follow/doesFollow`, {
+         const response = await axios.post<{ isFollowing: boolean }>("/api/follow/doesFollow", {
             followerId: authContext.currentUser?.user_id,
             followingId: user?.user_id,
          });
@@ -52,7 +52,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ profilePage, user, isProfileP
       setIsLoading(true);
       try {
          await axios.post(
-            `${import.meta.env.VITE_API_URL}/api/follow/follow`,
+            "/api/follow/follow",
             {
                followerId: authContext.currentUser?.user_id,
                followingId: user?.user_id,
@@ -77,7 +77,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ profilePage, user, isProfileP
       setIsLoading(true);
       try {
          await axios.post(
-            `${import.meta.env.VITE_API_URL}/api/follow/unfollow`,
+            "/api/follow/unfollow",
             {
                followerId: authContext.currentUser?.user_id,
                followedUserId: user?.user_id,

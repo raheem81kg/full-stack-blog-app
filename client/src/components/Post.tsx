@@ -50,7 +50,7 @@ const Post: React.FC<PostProps> = ({ post, toggleInfo, setToggleInfo, postIdex, 
 
    const getLikesCountByPostId = async () => {
       try {
-         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/like/getLikes?postId=${post.post_id}`);
+         const response = await axios.get(`/api/like/getLikes?postId=${post.post_id}`);
          const likesCount = response.data.likesCount || 0;
          setLikesCount(likesCount);
       } catch (error) {
@@ -62,7 +62,7 @@ const Post: React.FC<PostProps> = ({ post, toggleInfo, setToggleInfo, postIdex, 
       if (!authContext || !authContext.currentUser) return;
       try {
          const response = await axios.post(
-            `${import.meta.env.VITE_API_URL}/api/like/checkIfLiked`,
+            "/api/like/checkIfLiked",
             {
                userId: authContext.currentUser?.user_id,
                postId: post.post_id,
@@ -90,7 +90,7 @@ const Post: React.FC<PostProps> = ({ post, toggleInfo, setToggleInfo, postIdex, 
          // If not liked, make a request to like the post
          await axios
             .post(
-               `${import.meta.env.VITE_API_URL}/api/like/likePost`,
+               "/api/like/likePost",
                {
                   userId: authContext.currentUser?.user_id,
                   postId: post.post_id,
@@ -114,7 +114,7 @@ const Post: React.FC<PostProps> = ({ post, toggleInfo, setToggleInfo, postIdex, 
          // If liked, make a request to unlike the post
          await axios
             .post(
-               `${import.meta.env.VITE_API_URL}/api/like/unlikePost`,
+               "/api/like/unlikePost",
                {
                   userId: authContext.currentUser?.user_id,
                   postId: post.post_id,
@@ -132,7 +132,7 @@ const Post: React.FC<PostProps> = ({ post, toggleInfo, setToggleInfo, postIdex, 
    const checkFollowing = async () => {
       if (!authContext || !authContext.currentUser) return;
       try {
-         const response = await axios.post<{ isFollowing: boolean }>(`${import.meta.env.VITE_API_URL}/api/follow/doesFollow`, {
+         const response = await axios.post<{ isFollowing: boolean }>("/api/follow/doesFollow", {
             followerId: authContext.currentUser?.user_id,
             followingId: post.user_id,
          });
@@ -159,7 +159,7 @@ const Post: React.FC<PostProps> = ({ post, toggleInfo, setToggleInfo, postIdex, 
       setIsLoading(true);
       try {
          await axios.post(
-            `${import.meta.env.VITE_API_URL}/api/follow/follow`,
+            "/api/follow/follow",
             {
                followerId: authContext.currentUser?.user_id,
                followingId: post.user_id,
@@ -185,7 +185,7 @@ const Post: React.FC<PostProps> = ({ post, toggleInfo, setToggleInfo, postIdex, 
       setIsLoading(true);
       try {
          await axios.post(
-            `${import.meta.env.VITE_API_URL}/api/follow/unfollow`,
+            "/api/follow/unfollow",
             {
                followerId: authContext.currentUser?.user_id,
                followedUserId: post.user_id,

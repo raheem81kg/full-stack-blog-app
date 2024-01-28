@@ -40,7 +40,7 @@ const DeletePostDialog: React.FC<DeletePostDialogProps> = ({ children, post_id }
       try {
          setLoading(true);
          if (!post_id) return;
-         await axios.delete(`${import.meta.env.VITE_API_URL}/api/post/${post_id}`, {
+         await axios.delete(`/api/post/${post_id}`, {
             withCredentials: true,
          });
          if (closeButtonRef && closeButtonRef.current) {

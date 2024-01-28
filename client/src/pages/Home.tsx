@@ -29,9 +29,7 @@ const Home: React.FC = () => {
    const fetchPosts = async (offsetValue: number) => {
       try {
          const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/api/post/${
-               selectValue === "following" ? "getPostsByUserFollows" : "getAllPosts"
-            }?offset=${offsetValue}&limit=8`,
+            `/api/post/${selectValue === "following" ? "getPostsByUserFollows" : "getAllPosts"}?offset=${offsetValue}&limit=8`,
             {
                withCredentials: true, // Set withCredentials to true
             }
@@ -50,10 +48,6 @@ const Home: React.FC = () => {
    };
 
    useEffect(() => {
-      console.log(authContext?.posts);
-   }, [authContext?.posts]);
-
-   useEffect(() => {
       setFirstLoading(true);
       setOffset(0);
    }, [selectValue]);
@@ -67,9 +61,7 @@ const Home: React.FC = () => {
          setIsMorePosts(false);
          try {
             const response = await axios.get(
-               `${import.meta.env.VITE_API_URL}/api/post/${
-                  selectValue === "following" ? "getPostsByUserFollows" : "getAllPosts"
-               }?offset=${offset + 10}&limit=2`,
+               `/api/post/${selectValue === "following" ? "getPostsByUserFollows" : "getAllPosts"}?offset=${offset + 10}&limit=2`,
                {
                   withCredentials: true, // Set withCredentials to true
                }
