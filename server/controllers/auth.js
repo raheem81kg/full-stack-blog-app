@@ -52,6 +52,7 @@ const authController = {
          const token = jwt.sign({ id: user.user_id }, process.env.JWT_SECRET);
          const { password_hash, ...userWithoutPassword } = user;
 
+         console.log(userWithoutPassword);
          res.cookie("access_token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production", // Only secure in production
