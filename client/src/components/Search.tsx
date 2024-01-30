@@ -64,7 +64,7 @@ function Search({ search }: SearchProps) {
                            >
                               {user.profilePic ? (
                                  <Avatar className="mr-1">
-                                    <AvatarImage style={{ height: "1rem" }} src={user.profilePic && `../upload/${user.profilePic}`} />
+                                    <AvatarImage style={{ height: "1rem" }} src={user.profilePic && user.profilePic} />
                                  </Avatar>
                               ) : (
                                  <User className="mr-2 h-4 w-4" />

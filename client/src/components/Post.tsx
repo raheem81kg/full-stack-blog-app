@@ -149,7 +149,7 @@ const Post: React.FC<PostProps> = ({ post, toggleInfo, setToggleInfo, postIdex, 
    useEffect(() => {
       checkIfUserLikedPost();
       checkFollowing();
-   }, [authContext?.currentUser?.user_id, post.user_id]);
+   }, [authContext?.currentUser?.user_id, post.user_id, post.post_id]);
 
    const handleFollow = async () => {
       if (!authContext || !authContext.currentUser) {
@@ -221,7 +221,7 @@ const Post: React.FC<PostProps> = ({ post, toggleInfo, setToggleInfo, postIdex, 
          <div className={style.Container__left}>
             <Link to={`/user/${post.user_id}`}>
                <Avatar className="relative flex h-full rounded-full">
-                  <AvatarImage src={post?.user_pfp ? `../upload/${post.user_pfp}` : fallBackPfp} />
+                  <AvatarImage src={post?.user_pfp ? post.user_pfp : fallBackPfp} />
                   <AvatarFallback>
                      {authContext?.currentUser?.username && getInitialsFromString(authContext?.currentUser?.username)}
                   </AvatarFallback>
@@ -270,23 +270,15 @@ const Post: React.FC<PostProps> = ({ post, toggleInfo, setToggleInfo, postIdex, 
             <p>{post.content}</p>
 
             {/* conditionally show image */}
-            {post.images && post?.images.length > 0 && (
-               <img
-                  src={`../upload/${post.images[0]}`}
-                  onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                     if (post.images && post.images[0]) e.currentTarget.src = `${post?.images[0]}`; // Set a fallback image URL here
-                  }}
-                  alt=""
-               />
-            )}
+            {post.images && post?.images.length > 0 && <img src={post.images[0]} alt="" />}
 
             <div className={style.Container__middle__bottom}>
                <div>
                   <img
                      className={style.Container__middle__bottom__icon}
-                     src={isLiked ? likedIcon : likeIcon}
+                     src={isLiked && likesCount && likesCount > 0 ? likedIcon : likeIcon}
                      alt="Like Icon"
-                     onClick={isLiked ? handleUnlike : handleLike}
+                     onClick={isLiked && likesCount && likesCount > 0 ? handleUnlike : handleLike}
                   />
                   {likesCount}
                </div>

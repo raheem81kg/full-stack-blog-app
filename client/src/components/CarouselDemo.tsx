@@ -25,14 +25,7 @@ const CarouselDemo: React.FC<props> = ({ images }) => {
                   <CarouselItem key={index}>
                      <Card className="overflow-hidden">
                         <CardContent className="flex aspect-square items-center justify-center p-0">
-                           <img
-                              src={`../upload/${image}`}
-                              className="flex aspect-square items-center justify-center p-0"
-                              onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                 if (image) e.currentTarget.src = `${image}`; // Set a fallback image URL here
-                              }}
-                              alt=""
-                           />
+                           <img src={image} className="flex aspect-square items-center justify-center p-0" alt="" />
                         </CardContent>
                      </Card>
                   </CarouselItem>

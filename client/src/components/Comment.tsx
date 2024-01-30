@@ -11,7 +11,7 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
    return (
       <div className={style.Container}>
          <div className={style.Container__left}>
-            <img src={comment.commenter?.user_pfp ? `../upload/${comment.commenter.user_pfp}` : fallBackPfp} alt="" />
+            <img src={comment.commenter?.user_pfp ? comment.commenter.user_pfp : fallBackPfp} alt="" />
          </div>
          <div className={style.Container__middle}>
             <div className={style.Container__middle__top}>
@@ -24,9 +24,6 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
             </div>
 
             <p>{comment.content}</p>
-
-            {/* conditionally show image */}
-            {/* {comment.image && <img src={comment.image[0]} alt="" />} */}
          </div>
       </div>
    );

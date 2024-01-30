@@ -114,7 +114,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ profilePage, user, isProfileP
                   profilePage ? style.Container__img_container__cover__profilePage : ""
                }`}
             >
-               <img src={user?.coverPic ? `../upload/${user?.coverPic}` : defaultBg} alt="" />
+               <img src={user?.coverPic ? user?.coverPic : defaultBg} alt="" />
             </div>
 
             <div
@@ -124,7 +124,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ profilePage, user, isProfileP
             >
                {user?.user_id && user?.profilePic && user?.profilePic?.length > 0 ? (
                   <Link to={`/user/${user?.user_id}`}>
-                     <img src={`../upload/${user?.profilePic}`} alt="profile picture" />
+                     <img src={user?.profilePic} alt="profile picture" />
                   </Link>
                ) : (
                   <img src={fallBackPfp} alt="dummy profile picture" />
@@ -133,9 +133,14 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ profilePage, user, isProfileP
             <div className={style.Container__img_container__white_bg}></div>
          </div>
          <div className={style.Container__user_details}>
-            <Link to={`/user/${user?.user_id}`}>
+            {user?.user_id ? (
+               <Link to={`/user/${user?.user_id}`}>
+                  <h2>{user?.name || "no name"}</h2>
+               </Link>
+            ) : (
                <h2>{user?.name || "no name"}</h2>
-            </Link>
+            )}
+
             <p>{user?.bio}</p>
             {!user?.bio && <p>no bio...</p>}
          </div>

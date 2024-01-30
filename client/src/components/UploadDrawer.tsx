@@ -45,7 +45,7 @@ const UploadDrawer: React.FC<DrawerTriggerProps> = ({ children }) => {
                postFormData.append("images", images[i]);
             }
 
-            const postImageRes = await axios.post("/api/uploadPostImages", postFormData, {
+            const postImageRes = await axios.post("/api/upload/uploadPostImages", postFormData, {
                headers: {
                   "Content-Type": "multipart/form-data",
                },
@@ -54,7 +54,7 @@ const UploadDrawer: React.FC<DrawerTriggerProps> = ({ children }) => {
             return postImageRes.data;
          }
       } catch (error) {
-         console.error("Error uploading profile picture:", error);
+         console.error("Error uploading picture:", error);
          throw error;
       }
 

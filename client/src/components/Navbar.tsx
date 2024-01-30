@@ -42,7 +42,6 @@ const Navbar: React.FC = () => {
                </div>
             </div>
             <Link to="/">
-               {" "}
                <img className={style.Navbar__middle} id="logo" src={logoImage} alt="Some random logo" />
             </Link>
             <div className={style.Navbar__right}>
@@ -50,9 +49,7 @@ const Navbar: React.FC = () => {
                   <DropdownMenu>
                      <DropdownMenuTrigger>
                         <Avatar>
-                           <AvatarImage
-                              src={authContext.currentUser.profilePic && `../upload/${authContext?.currentUser?.profilePic}`}
-                           />
+                           <AvatarImage src={authContext.currentUser.profilePic && authContext?.currentUser?.profilePic} />
                            <AvatarFallback>
                               {authContext?.currentUser?.username && getInitialsFromString(authContext?.currentUser?.username)}
                            </AvatarFallback>

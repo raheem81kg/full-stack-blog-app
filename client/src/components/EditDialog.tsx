@@ -35,7 +35,7 @@ export function EditDialog() {
             const profileFormData = new FormData();
             profileFormData.append("file", profilePic);
 
-            const pfpRes = await axios.post("/api/upload/uploadProfilePic", profileFormData, {
+            const pfpRes = await axios.post("http://localhost:4999/api/upload/uploadProfilePic", profileFormData, {
                headers: {
                   "Content-Type": "multipart/form-data",
                },
@@ -81,6 +81,11 @@ export function EditDialog() {
 
    const handleSubmit = async () => {
       setIsLoading(true); // Set loading state to true while making the request
+      if (!authContext?.currentUser?.user_id) {
+         toast({
+            title: "Please login to change profile details!",
+         });
+      }
       try {
          const updatedUser: UpdateUserInterface = {
             username,
@@ -93,6 +98,9 @@ export function EditDialog() {
          };
 
          await authContext?.updateUser(updatedUser);
+         toast({
+            title: "Profile successfully updated!",
+         });
       } catch (error: any) {
          toastError(error, "Logout error:");
       } finally {

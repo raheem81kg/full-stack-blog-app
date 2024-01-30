@@ -2,7 +2,7 @@ import db from "../db.js";
 import Redis from "ioredis";
 import dotenv from "dotenv";
 
-dotenv.config({ path: "./.env" });
+dotenv.config({ path: "../.env" });
 
 // I set up SLL in redis so the extra "s" in "rediss" is very important.
 const redisClient = new Redis(process.env.REDIS_URL);

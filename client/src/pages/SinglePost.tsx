@@ -214,7 +214,7 @@ const SinglePost = () => {
             <div className={style.Post_Container__left}>
                <Link to={`/profile/${post?.user_id}`}>
                   <Avatar className="relative flex h-full rounded-full">
-                     <AvatarImage src={post?.user_pfp ? `../upload/${post.user_pfp}` : fallBackPfp} />
+                     <AvatarImage src={post?.user_pfp ? post.user_pfp : fallBackPfp} />
                      <AvatarFallback>{post?.creatorname && getInitialsFromString(post?.creatorname)}</AvatarFallback>
                   </Avatar>
                </Link>
@@ -260,13 +260,7 @@ const SinglePost = () => {
 
             <form className={style.Container__CommentAreaPost__comments} onSubmit={handleSubmitComment}>
                <Avatar className="relative flex h-full rounded-full">
-                  <AvatarImage
-                     src={
-                        authContext?.currentUser?.profilePic
-                           ? authContext.currentUser.profilePic && `../upload/${authContext?.currentUser?.profilePic}`
-                           : fallBackPfp
-                     }
-                  />
+                  <AvatarImage src={authContext?.currentUser?.profilePic ? authContext.currentUser.profilePic : fallBackPfp} />
                   <AvatarFallback>
                      {authContext?.currentUser?.username && getInitialsFromString(authContext?.currentUser?.username)}
                   </AvatarFallback>
