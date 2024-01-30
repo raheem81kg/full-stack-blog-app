@@ -22,7 +22,6 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
                   </span>
                </p>
             </div>
-
             <p>{comment.content}</p>
          </div>
       </div>

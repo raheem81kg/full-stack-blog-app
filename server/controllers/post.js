@@ -303,7 +303,7 @@ const addImageToPost = async (postId, images, userId) => {
       if (post[0].user_id != userId) {
          throw new Error("Forbidden");
       }
-
+      console.log(imageUrl);
       const insertImageQuery = "INSERT INTO postImage (post_id, image_url) VALUES (?, ?)";
       for (const imageUrl of images) {
          await db.execute(insertImageQuery, [postId, imageUrl]);

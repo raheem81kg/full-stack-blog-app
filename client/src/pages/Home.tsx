@@ -80,6 +80,12 @@ const Home: React.FC = () => {
       setOffset((prevOffset) => prevOffset + 10); // Increment offset (e.g., load next 10 posts)
    };
 
+   useEffect(() => {
+      window.scrollTo(0, 0); // Scroll to the top of the page
+      setFirstLoading(true);
+      setOffset(0);
+   }, [selectValue]);
+
    return (
       <>
          {!firstLoading ? (

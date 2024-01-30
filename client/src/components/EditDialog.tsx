@@ -35,7 +35,7 @@ export function EditDialog() {
             const profileFormData = new FormData();
             profileFormData.append("file", profilePic);
 
-            const pfpRes = await axios.post("http://localhost:4999/api/upload/uploadProfilePic", profileFormData, {
+            const pfpRes = await axios.post("/api/upload/uploadProfilePic", profileFormData, {
                headers: {
                   "Content-Type": "multipart/form-data",
                },

@@ -1,4 +1,3 @@
-import { ref, getDownloadURL, uploadBytesResumable, uploadBytes, getStorage } from "firebase/storage";
 import { v4 } from "uuid";
 import admin from "firebase-admin";
 import serviceAccount from "../firebase/admin.json" assert { type: "json" };

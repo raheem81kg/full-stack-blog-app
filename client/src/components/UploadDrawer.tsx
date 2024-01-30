@@ -29,7 +29,7 @@ const UploadDrawer: React.FC<DrawerTriggerProps> = ({ children }) => {
    const { toast } = useToast();
    const navigate = useNavigate();
    const cancelButtonRef = useRef<HTMLButtonElement>(null);
-   const [content, setContent] = useState<string>("");
+   const [content, setContent] = useState<string | undefined>("");
    const [images, setImages] = useState<FileList>();
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const toastError = useToastError();
@@ -130,11 +130,15 @@ const UploadDrawer: React.FC<DrawerTriggerProps> = ({ children }) => {
             description: "Your post has been successfully uploaded.",
          });
       } catch (error) {
-         // Handle errors
          toastError(error, "Error adding post:");
       } finally {
          setIsLoading(false);
       }
+   };
+
+   const clearInputs = () => {
+      content && setContent(undefined);
+      images && setImages(undefined);
    };
 
    return (
@@ -174,7 +178,7 @@ const UploadDrawer: React.FC<DrawerTriggerProps> = ({ children }) => {
                   )}
                </Button>
                <DrawerClose>
-                  <Button ref={cancelButtonRef} variant="outline">
+                  <Button ref={cancelButtonRef} onClick={clearInputs} variant="outline">
                      Cancel
                   </Button>
                </DrawerClose>
