@@ -34,8 +34,8 @@ export async function createTables() {
         username VARCHAR(255) NOT NULL UNIQUE,
         email VARCHAR(255) NOT NULL UNIQUE,
         password_hash VARCHAR(255) NOT NULL,
-        profile_picture_url VARCHAR(2000),
-        cover_picture_url VARCHAR(2000),
+        profile_picture_url TEXT,
+        cover_picture_url TEXT,
         bio TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -69,7 +69,7 @@ export async function createTables() {
   CREATE TABLE IF NOT EXISTS postImage (
     image_id INT PRIMARY KEY AUTO_INCREMENT,
     post_id INT NOT NULL,
-    image_url VARCHAR(255) NOT NULL,
+    image_url TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (post_id) REFERENCES post (post_id) ON DELETE CASCADE
   )
@@ -79,7 +79,7 @@ export async function createTables() {
   CREATE TABLE IF NOT EXISTS profilePicture (
     picture_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
-    picture_url VARCHAR(255) NOT NULL,
+    picture_url TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE
