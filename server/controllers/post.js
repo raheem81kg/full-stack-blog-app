@@ -305,6 +305,7 @@ const addImageToPost = async (postId, images, userId) => {
       }
 
       const insertImageQuery = "INSERT INTO postImage (post_id, image_url) VALUES (?, ?)";
+      console.log(images);
       for (const imageUrl of images) {
          console.log(imageUrl);
          await db.execute(insertImageQuery, [postId, imageUrl]);

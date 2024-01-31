@@ -70,7 +70,7 @@ const uploadController = {
          }
 
          // Send back the array of signed URLs as the response
-         res.status(200).json(filenames);
+         res.status(200).json(...filenames);
       } catch (error) {
          console.error(error);
          res.status(500).json({ error: "Internal Server Error" });

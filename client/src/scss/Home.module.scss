@@ -49,7 +49,9 @@
          gap: 2px;
          background: $bg-bg;
          overflow: hidden;
-         align-self: flex-start;
+         @media screen and (min-width: 980px) {
+            align-self: flex-start;
+         }
       }
    }
 }
