@@ -18,7 +18,6 @@ if (!process.env.DB_FULL_CONNECTION_STRING) {
    };
 } else {
    dbConfig = process.env.DB_FULL_CONNECTION_STRING;
-   console.log("string");
 }
 
 const db = mysql.createPool(dbConfig);

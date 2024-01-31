@@ -55,7 +55,6 @@ const userController = {
    deleteUser: async (req, res) => {
       try {
          const userId = req.userId;
-         console.log(userId);
 
          // Delete the user's account from the database
          const deleteQuery = "DELETE FROM user WHERE user_id = ?";

@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import admin from "firebase-admin";
-import serviceAccount from "../firebase/admin.json" assert { type: "json" };
+import serviceAccount from "../firebase/admin.js";
 
 // Initialize Firebase admin
 admin.initializeApp({
@@ -185,7 +185,6 @@ const uploadController = {
                      console.error(err);
                      res.status(500).send("Error generating signed URL.");
                   } else {
-                     console.log(signedUrl);
                      res.status(200).json({ filename: signedUrl });
                   }
                }
