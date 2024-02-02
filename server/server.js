@@ -13,8 +13,6 @@ const storage = multer.diskStorage({
    },
 });
 
-const upload = multer({ storage });
-
 const app = express();
 dotenv.config({ path: "./.env" });
 

@@ -1,4 +1,3 @@
-// routes.js
 import { Router } from "express";
 import { upload } from "../utils/upload.js";
 const router = Router();
